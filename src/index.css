@@ -1,0 +1,281 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+html, body, .root {
+  height: 100%;
+}
+
+:root {
+  --surface-color: rgba(0,0,0,0.8);
+  --curve: 40;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  line-height: 1.5;
+  background: #eee !important;
+}
+body, .app {
+  background: #fef8f8; 
+}
+
+/* Contact Detail */
+
+.close-create-contact {
+  display: block;
+  width: 60px;
+  height: 60px;
+  background-image: url('./icons/arrow-back.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  font-size: 0;
+}
+
+.create-contact-form {
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.create-contact-details {
+  margin-left: 20px;
+}
+
+.create-contact-avatar-input {
+  min-width: 180px;
+  height: 180px;
+  background-color: white;
+  background-image: url('./icons/person.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 40px;
+}
+
+.create-contact-details input {
+  width: 100%;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  font-size: inherit;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: 0;
+}
+
+
+.create-contact-details button {
+  margin-top: 20px;
+  background: #ccc;
+  padding: 10px;
+  text-transform: uppercase;
+  font-size: inherit;
+  border: none;
+  outline: 0;
+}
+
+/* ListContacts */
+
+.list-contacts {
+  padding-top: 60px;
+}
+.list-contacts-top {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  border-bottom: 1px solid #d5d8df;
+  display: flex;
+}
+
+.search-contacts {
+  width: 100%;
+  padding: 20px 20px 20px 60px;
+  background-image: url('./icons/search.svg');
+  background-repeat: no-repeat;
+  background-position: 20px center;
+  background-size: 1.2em;
+  font-size: 1.2em;
+  border: 0;
+  outline: none;
+}
+
+.add-contact {
+  display: block;
+  width: 73px;
+  background: white;
+  background-image: url('./icons/person-add.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  font-size: 0;
+}
+
+.showing-contacts {
+  text-align: center;
+  margin: 20px 0;
+}
+.showing-contacts button {
+  color: blue;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+}
+
+.contact-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 0.25fr));
+  gap: 1rem;
+  margin: 2rem 1vw;
+  padding: 0;
+  list-style-type: none;
+}
+
+.card {
+  position: relative;
+  display: block;
+  height: 100%;  
+  border-radius: calc(var(--curve) * 0.5px) !important;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.card-image {      
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;      
+  border-radius: calc(var(--curve) * 0.5px) 0 0 0;    
+  background-color: var(--surface-color);      
+  transform: translateY(100%);
+  transition: .2s ease-in-out;
+}
+.card:hover .card__header{
+  background-color: rgba(0,0,0,0);
+}
+.card:hover .card__overlay {
+  transform: translateY(0);
+}
+
+.card__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  padding: 1em;
+  border-radius: calc(var(--curve) * 0.5px) 0 0 0;    
+  background-color: var(--surface-color);
+  transform: translateY(-100%);
+  transition: .2s ease-in-out;
+}
+
+.card__arc {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  bottom: 100%;
+  right: 0;      
+  z-index: 1;
+}
+
+.card__arc path {
+  fill: var(--surface-color);
+  d: path("M 20 40 c 11 0 20 -11 20 -20 v 20 Z");
+}      
+
+.card:hover .card__header {
+  transform: translateY(0);
+}
+
+.card__title {
+  font-size: 1em;
+  margin: 0 0 .3em;
+  color: #e9ecef;  
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card__description {
+  width: 100%;
+  padding: 0 1em 1em;
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+}
+
+.card__button {
+  text-align: center;
+  background-color: #fff;
+  border-radius: 18px;
+  border-style: none;
+  color: #3c4043;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  height: 36px;
+  padding: 2px 12px;
+}
+
+.danger {  
+  background-color: #FFE7E7;
+  border: 1px solid #FEE0E0;
+  color: #D33A2C;
+}
+
+@media (min-width: 600px) {
+  .contact-list-item {
+    overflow: hidden;
+  }
+}
+.contact-details {
+  padding-left: 20px;
+  border-left: 1px solid #eee;
+
+  flex: 1;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.contact-details p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contact-remove {
+  padding-left: 20px;
+  align-self: center;
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  background-image: url('./icons/cancel.svg');
+  background-size: 100% 100%;
+  border: 0;
+  color: black;
+  font-size: 0;
+  vertical-align: middle;
+  cursor: pointer;
+  outline: none;
+}
